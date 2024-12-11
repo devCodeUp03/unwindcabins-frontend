@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .container {
+    @apply mx-auto max-w-full px-3 sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] xxl:max-w-[1320px];
+  }
+
+  .text-box {
+    @apply h-[32px] w-full rounded-sm px-2 focus:outline-none sm:h-[36px] md:h-[38px] lg:h-[42px] xl:h-[48px] xxl:h-[54px];
+  }
+
+  .faq-btn {
+    @apply h-[36px] w-full rounded-sm border border-[#BEC2D9] bg-[#F5B963] sm:h-[42px] md:h-[50px] md:w-[284px] lg:h-[62px] lg:w-[460px] xl:h-[74px] xl:w-[552px] xxl:h-[82px] xxl:w-[664px] font-poppins font-medium text-[12px] md:text-[14px] lg:text-[16px] px-4 text-left;
+  }
+}
+/* input[type="date"] {
+  appearance: none;
+} */
+
+.date {
+  appearance: none;
+}
+
+/* 
+* {
+  background-color: rgba(255, 0, 0, 0.05);
+} */

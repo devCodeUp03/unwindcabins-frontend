@@ -2,6 +2,8 @@ import React from 'react'
 import DiscoverCabin from './DiscoverCabin';
 
 const DiscoverCabins = () => {
+
+  
   return (
     <div>
         <div className="bg-white">

@@ -22,9 +22,7 @@ const Home = () => {
       <FindCabin />
       <Faq />
       <FindGateway />
-      <Footer />
-
-      
+      <Footer />      
     </>
   );
 };

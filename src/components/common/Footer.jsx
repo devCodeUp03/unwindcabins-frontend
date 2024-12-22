@@ -5,8 +5,6 @@ import { LuFacebook } from "react-icons/lu";
 import { FaInstagram } from "react-icons/fa";
 import { TbBrandYoutube } from "react-icons/tb";
 
-
-
 const Footer = () => {
   return (
     <>

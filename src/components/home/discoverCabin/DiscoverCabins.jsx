@@ -14,11 +14,9 @@ const DiscoverCabins = () => {
     setLink(location.pathname === "/");
   }, [location.pathname]);
 
-  console.log(location);
 
   useEffect(() => {
     axios.get("http://localhost:8000/api/cabins/getcabins").then((res) => {
-      console.log(res.data);
       setCabins(res.data || []);
     });
   }, []);

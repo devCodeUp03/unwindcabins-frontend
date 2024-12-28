@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/common/Header";
 import HeroSection from "../components/home/HeroSection";
 import DiscoverCabins from "../components/home/discoverCabin/DiscoverCabins";
@@ -13,20 +13,18 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const Home = () => {
-  return (
-    <>
-      {/* <Header /> */}
-      <HeroSection />
-      <DiscoverCabins />
-      <InspirationCabins />
-      <PurpleWoman />
-      <CabinGateway />
-      <FindCabin />
-      <Faq />
-      <FindGateway />
-      {/* <Footer />      */}
-    </>
-  );
+  <>
+    {/* <Header /> */}
+    <HeroSection />
+    <DiscoverCabins />
+    <InspirationCabins />
+    <PurpleWoman />
+    <CabinGateway />
+    <FindCabin />
+    <Faq />
+    <FindGateway />
+    {/* <Footer />      */}
+  </>;
 };
 
 export default Home;

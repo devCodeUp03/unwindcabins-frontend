@@ -1,15 +1,30 @@
-import React, { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import { setReduxUser } from "../../redux/slice/userSlice";
+import { useState } from "react";
+
 const Header = () => {
+  const user = useSelector((store) => store.user.value);
+  const navigate = useNavigate();
+  const book = useSelector((store) => store.book.value);
+  const dispatch = useDispatch();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  function logout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("bookedCabins");
+    dispatch(setReduxUser(null));
+    localStorage.removeItem("likedCabins");
+    navigate("/" , {state: {reload: true}})
+  }
 
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
-    console.log(isMenuOpen);
   }
   return (
     <>
@@ -21,36 +36,73 @@ const Header = () => {
               <span className="text-[#1A3724]">CABINS</span>
             </div>
           </Link>
+          {/* bg-[#bbbbbb] */}
           <ul
-            className={`fixed bottom-0 right-0 top-0 flex w-[50%] flex-col gap-6 bg-[#bbbbbb] p-10 text-[12px] font-normal md:text-[14px] lg:gap-[32px] xl:text-[16px] ${isMenuOpen ? "translate-x-0" : "translate-x-full lg:translate-x-0"} transition-all lg:static lg:flex-row lg:items-center lg:justify-end lg:bg-transparent lg:px-0 lg:py-0`}
+            className={`fixed bottom-0 right-0 top-0 flex w-[50%] flex-col gap-6 bg-white p-10 text-[12px] font-normal md:text-[14px] lg:gap-[32px] xl:text-[16px] ${isMenuOpen ? "translate-x-0" : "translate-x-full lg:translate-x-0"} transition-all lg:static lg:flex-row lg:items-center lg:justify-end lg:bg-transparent lg:px-0 lg:py-0`}
           >
             <li className="flex justify-end lg:hidden">
               <button onClick={toggleMenu}>
                 <IoMdClose className="text-[22px] sm:text-[24px] md:text-[28px] lg:text-[32px]" />
               </button>
             </li>
-            <li className="hover:text-blue-500"><HashLink smooth to="/#ourcabins">Our cabins</HashLink></li>
-            <li className="hover:text-blue-500"><HashLink smooth to="/#getinspired">Get inspired</HashLink></li>
-            <li className="hover:text-blue-500 cursor-pointer">Gift a stay</li>
-            <li className="hover:text-blue-500 cursor-pointer">About us</li>
+            <li className="hover:text-blue-500">
+              <HashLink smooth to="/#ourcabins">
+                Our cabins
+              </HashLink>
+            </li>
+            <li className="hover:text-blue-500">
+              <HashLink smooth to="/#getinspired">
+                Get inspired
+              </HashLink>
+            </li>
+            <li className="cursor-pointer hover:text-blue-500">Gift a stay</li>
+            <li className="cursor-pointer hover:text-blue-500">About us</li>
 
             {isMenuOpen ? (
-              <li className="">View your profile</li>
+              <li className="">
+                {user ? user.user.username : "View your profile"}
+              </li>
             ) : (
-              <li className=" hover:cursor-pointer group relative flex items-center justify-center rounded-full border border-[#3F3F3F] bg-[#F2FAF9] lg:h-[38px] lg:w-[38px] xl:h-[42px] xl:w-[42px] xxl:h-[48px] xxl:w-[48px]">
-                <FaUserCircle className="text-[24px]" />
-                <ul className="absolute left-1/2 top-full mt-[1px] xl:mt-[1px] hidden w-[160px] -translate-x-1/2 bg-white text-black group-hover:grid">
+              <li className="group relative flex items-center justify-center rounded-full border border-[#3F3F3F] bg-[#F2FAF9] hover:cursor-pointer lg:h-[38px] lg:w-[38px] xl:h-[42px] xl:w-[42px] xxl:h-[48px] xxl:w-[48px]">
+                {user ? (
+                  <img
+                    src={`http://localhost:8000${user.user.image}`}
+                    alt="Profile"
+                    className="h-[24px] w-[24px] rounded-full border border-gray-400 bg-white object-cover"
+                  />
+                ) : (
+                  <FaUserCircle className="text-[24px]" />
+                )}
+                <ul className="absolute left-1/2 top-full mt-[1px] hidden w-[160px] -translate-x-1/2 bg-white text-black group-hover:grid xl:mt-[1px]">
                   <li className="p-2">
                     <ul>
-                      <li>View your Profile</li>
-                      <li><Link to="/login">Login</Link></li>
+                      <li className="text-black">
+                        {user ? user.user.username : "View your profile"}
+                      </li>
+                      {user ? <Link to="/cabins/bookedcabins">Book( {book.length} )</Link> : null}
+                      {user ? (
+                        <li onClick={logout}>Logout</li>
+                      ) : (
+                        <li>
+                          <Link to="/login">Login</Link>
+                        </li>
+                      )}
                     </ul>
                   </li>
                 </ul>
               </li>
             )}
             <li className="lg:hidden">
-              <Link to="/login">Login</Link>
+              {user ? (
+                <>
+                  <Link to ="/cabins/bookedcabins">Book ( {book.length} )</Link>
+                  <br />
+                  <br />
+                  <button onClick={logout}>Logout</button>
+                </>
+              ) : (
+                <Link to="/login">Login</Link>
+              )}
             </li>
           </ul>
 

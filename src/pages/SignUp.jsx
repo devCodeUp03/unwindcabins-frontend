@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ const SignUp = () => {
       .then((res) => {
         setIsLoading(false);
 
-        // Navigate("/login")
+        navigate("/login")
         toast.success("success");
         console.log(res);
       })
@@ -208,7 +208,7 @@ const SignUp = () => {
           </p>
         </div>
       </div>
-      <ToastContainer />
+    
     </div>
   );
 };

@@ -13,7 +13,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const Home = () => {
-  <>
+  return <>
     {/* <Header /> */}
     <HeroSection />
     <DiscoverCabins />

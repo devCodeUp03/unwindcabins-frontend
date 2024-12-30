@@ -12,12 +12,16 @@ import BookedCabins from "./pages/BookedCabins";
 import { useDispatch } from "react-redux";
 import { setReduxUser } from "./redux/slice/userSlice";
 import axios from "axios";
+import SearchedCabins from "./components/home/SearchedCabins";
+import Admin from "./pages/Admin";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import UserDetail from "./components/admin/user/UserDetail";
 
 const App = () => {
   const dispatch = useDispatch();
 
   let token = localStorage.getItem("token");
-
 
   useEffect(() => {
     axios
@@ -28,9 +32,9 @@ const App = () => {
       })
       .then((res) => {
         let user = {
-          user: res.data
-        }
-        dispatch(setReduxUser(user))
+          user: res.data,
+        };
+        dispatch(setReduxUser(user));
       });
   }, []);
   // const [user, setUser] = useState(null);
@@ -52,11 +56,30 @@ const App = () => {
           element: <SignUp />,
         },
         {
+          path: "/admin",
+          children: [
+            {
+              path: "",
+              element: <Admin />
+
+            },
+            {
+              path: "userdetails/:id",
+              element:<UserDetail />
+            }
+          ]
+        },
+
+        {
           path: "/cabins",
           children: [
             {
               path: "",
               element: <DiscoverCabins />,
+            },
+            {
+              path: "searchedcabins",
+              element: <SearchedCabins />,
             },
 
             {
@@ -89,6 +112,7 @@ const App = () => {
   return (
     <div>
       <RouterProvider router={router} />
+      <ToastContainer />
     </div>
   );
 };

@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { setReduxUser } from "../../redux/slice/userSlice";
 import { useState } from "react";
+import { bookReset } from "../../redux/slice/bookSlice";
 
 const Header = () => {
   const user = useSelector((store) => store.user.value);
@@ -20,7 +21,9 @@ const Header = () => {
     localStorage.removeItem("bookedCabins");
     dispatch(setReduxUser(null));
     localStorage.removeItem("likedCabins");
-    navigate("/" , {state: {reload: true}})
+    dispatch(bookReset());
+    navigate("/login");
+    // window.location.reload();
   }
 
   function toggleMenu() {
@@ -60,7 +63,7 @@ const Header = () => {
 
             {isMenuOpen ? (
               <li className="">
-                {user ? user.user.username : "View your profile"}
+                {user ? user?.user?.username : "View your profile"}
               </li>
             ) : (
               <li className="group relative flex items-center justify-center rounded-full border border-[#3F3F3F] bg-[#F2FAF9] hover:cursor-pointer lg:h-[38px] lg:w-[38px] xl:h-[42px] xl:w-[42px] xxl:h-[48px] xxl:w-[48px]">
@@ -73,13 +76,22 @@ const Header = () => {
                 ) : (
                   <FaUserCircle className="text-[24px]" />
                 )}
-                <ul className="absolute left-1/2 top-full mt-[1px] hidden w-[160px] -translate-x-1/2 bg-white text-black group-hover:grid xl:mt-[1px]">
-                  <li className="p-2">
-                    <ul>
+                <ul className="absolute left-1/2 top-full mt-[1px] hidden w-[160px] -translate-x-1/2 rounded-sm bg-white text-black shadow-[0_12px_20px_0px_rgba(39,45,77,0.2)] group-hover:grid xl:mt-[1px]">
+                  <li>
+                    <ul className="p-2">
+                      {user?.user?.usertype === "admin" ? (
+                        <Link to="/admin" className="block">
+                          Admin Panel
+                        </Link>
+                      ) : null}
                       <li className="text-black">
                         {user ? user.user.username : "View your profile"}
                       </li>
-                      {user ? <Link to="/cabins/bookedcabins">Book( {book.length} )</Link> : null}
+                      {user ? (
+                        <Link to="/cabins/bookedcabins">
+                          Book ( {book.length} )
+                        </Link>
+                      ) : null}
                       {user ? (
                         <li onClick={logout}>Logout</li>
                       ) : (
@@ -93,9 +105,23 @@ const Header = () => {
               </li>
             )}
             <li className="lg:hidden">
+              {user?.user?.usertype === "admin" ? (
+                <Link
+                  to="/admin"
+                  // className={`${user?.user?.usertype != "admin" ? "hidden" : "visible"} `}
+                >
+                  Admin Panel
+                </Link>
+              ) : null}
               {user ? (
                 <>
-                  <Link to ="/cabins/bookedcabins">Book ( {book.length} )</Link>
+                  {user?.user?.usertype == "admin" ? (
+                    <>
+                      <br />
+                      <br />
+                    </>
+                  ) : null}
+                  <Link to="/cabins/bookedcabins">Book ( {book.length} )</Link>
                   <br />
                   <br />
                   <button onClick={logout}>Logout</button>

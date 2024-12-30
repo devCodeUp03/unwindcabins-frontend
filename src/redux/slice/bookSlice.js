@@ -24,9 +24,12 @@ export const bookSlice = createSlice({
       state.value = state.value.filter((el) => el._id !== action.payload._id);
       localStorage.setItem("bookedCabins", JSON.stringify(state.value));
     },
+    bookReset: (state, action) => {
+      state.value = [];
+    }
   },
 });
 
-export const { setReduxBook, unsetReduxBook } = bookSlice.actions;
+export const { setReduxBook, unsetReduxBook, bookReset } = bookSlice.actions;
 
 export default bookSlice.reducer;

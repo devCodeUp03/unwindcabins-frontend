@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import FormErrors from "../components/common/FormErrors";
 import { setReduxUser } from "../redux/slice/userSlice";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 const Login = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -32,6 +33,7 @@ const Login = () => {
           localStorage.setItem("token", res.data.token);
           setIsLoading(false);
           navigate("/");
+          toast.success("Login successful")
 
         } catch(err) {
           console.log(err);
@@ -43,13 +45,17 @@ const Login = () => {
         // console.log(err.response.data);
         setFormErrors(err.response?.data?.errors);
       });
+
+      if(formErrors?.credentials?.msg) {
+        toast.error("invalid credentials");
+      }
   }
 
   return (
     <div>
       <div className="flex h-[400px] items-center justify-center bg-[#C5FBD8] md:h-[440px] lg:h-[480px] xl:h-[520px] xxl:h-[540px]">
-        <div className="container mx-4 rounded-md bg-white p-4 sm:w-[400px] sm:p-5 md:w-[450px] md:p-6 lg:w-[500px] lg:p-7 xl:p-8">
-          <form className="flex flex-col gap-4 md:gap-6" onSubmit={handleLogin}>
+        <div className="container mx-4  shadow-[0_12px_20px_0px_rgba(39,45,77,0.2)] rounded-md bg-white p-4 sm:w-[400px] sm:p-5 md:w-[450px] md:p-6 lg:w-[500px] lg:p-7 xl:p-8">
+          <form className="flex flex-col gap-4 md:gap-6 " onSubmit={handleLogin}>
             <p className="mb-4 text-center text-[24px] font-semibold md:text-[28px] lg:text-[32px]">
               Welcome
             </p>
@@ -74,7 +80,8 @@ const Login = () => {
               onChange={(e) => {setUserInfos({...userInfos, password: e.target.value})}}
             />
             <span className="text-red-500">{formErrors.password?.msg}</span>
-            <div className="text-red-500">{formErrors.credentials?.msg}</div>
+
+            
 
             <input
               type="submit"

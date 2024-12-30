@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
 import { useDispatch } from "react-redux";
 import { setReduxBook, unsetReduxBook } from "../../../redux/slice/bookSlice";
+import { toast } from "react-toastify";
 
 const DiscoverCabin = (props) => {
   let navigate = useNavigate();
@@ -10,38 +11,60 @@ const DiscoverCabin = (props) => {
   const dispatch = useDispatch();
   const [heart, setHeart] = useState("text-white");
   // function toggleHeart() {
-  //   if (heart == "text-white") {
+
+  // useEffect(() => {
+  //   const likedCabins = JSON.parse(localStorage.getItem("likedCabins")) || [];
+  //   if (likedCabins.includes(_id)) {
+  //     setHeart("text-red-500");
+  //   }
+  // }, [_id]);
+
+  // // Toggle heart state and persist it to local storage
+  // function toggleHeart() {
+  //   const likedCabins = JSON.parse(localStorage.getItem("likedCabins")) || [];
+
+  //   if (heart === "text-white") {
   //     setHeart("text-red-500");
   //     dispatch(setReduxBook(props));
+  //     toast.success("cabin added");
+  //     // Add cabin ID to local storage
+  //     localStorage.setItem("likedCabins", JSON.stringify([...likedCabins, _id]));
   //   } else {
   //     setHeart("text-white");
   //     dispatch(unsetReduxBook(props));
+  //     toast.error('cabin removed')
+  //     // Remove cabin ID from local storage
+  //     const updatedCabins = likedCabins.filter((id) => id !== _id);
+  //     localStorage.setItem("likedCabins", JSON.stringify(updatedCabins));
   //   }
   // }
+
   useEffect(() => {
     const likedCabins = JSON.parse(localStorage.getItem("likedCabins")) || [];
     if (likedCabins.includes(_id)) {
       setHeart("text-red-500");
+    } else {
+      setHeart("text-white");
     }
-  }, [_id]);
+  }, [_id, props]);
 
-  // Toggle heart state and persist it to local storage
-  function toggleHeart() {
+  // Toggle heart state and persist to local storage
+  const toggleHeart = () => {
     const likedCabins = JSON.parse(localStorage.getItem("likedCabins")) || [];
 
     if (heart === "text-white") {
       setHeart("text-red-500");
       dispatch(setReduxBook(props));
-      // Add cabin ID to local storage
+      toast.success("Cabin added");
       localStorage.setItem("likedCabins", JSON.stringify([...likedCabins, _id]));
     } else {
       setHeart("text-white");
       dispatch(unsetReduxBook(props));
-      // Remove cabin ID from local storage
+      toast.error("Cabin removed");
       const updatedCabins = likedCabins.filter((id) => id !== _id);
       localStorage.setItem("likedCabins", JSON.stringify(updatedCabins));
     }
-  }
+  };
   return (
     <div
       onClick={() => {

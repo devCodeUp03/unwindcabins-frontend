@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IoCloseCircleOutline } from "react-icons/io5";
-import { unsetReduxBook } from "../redux/slice/bookSlice";
-import { MdOutlineDoneAll } from "react-icons/md";
-import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import BookedCabin from "../components/BookedCabin";
 
 const BookedCabins = () => {
   const navigate = useNavigate();
@@ -17,66 +14,65 @@ const BookedCabins = () => {
       navigate("/login");
     }
   }, [navigate]);
-  const dispatch = useDispatch();
+
   const book = useSelector((store) => store.book.value);
-  const user = useSelector((store) => store.user.value);
-  let [bookedResponse, setBookedResponse] = useState(null);
+
   // let [cancelResponse, setCancelResponse] = useState(null);
 
-  const [bookingErrors, setBookingErrors] = useState(null);
+  // const [bookingErrors, setBookingErrors] = useState(null);
 
-  async function bookCabin(e, cabin) {
-    const bookUrl = `http://localhost:8000/api/orders/book/`;
+  // async function bookCabin(e, cabin) {
+  //   let [bookedResponse, setBookedResponse] = useState(null);
+  //   const bookUrl = `http://localhost:8000/api/orders/book/`;
 
-    let formData = {
-      cabinId: cabin._id,
-      rate: cabin.price,
-      cabinName: cabin.cabinName,
-      checkin: e.target.checkin.value,
-      checkout: e.target.checkout.value,
-      bookedBy: user.user._id,
-      travellers: e.target.travellers.value,
-    };
+  //   let formData = {
+  //     cabinId: cabin._id,
+  //     rate: cabin.price,
+  //     cabinName: cabin.cabinName,
+  //     checkin: e.target.checkin.value,
+  //     checkout: e.target.checkout.value,
+  //     bookedBy: user.user._id,
+  //     travellers: e.target.travellers.value,
+  //   };
 
-    await axios
-      .post(bookUrl, formData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => {
-        setBookedResponse(res.data);
-        toast.success("booked succesfully")
-      })
-      .catch((err) => {
-        setBookingErrors(err.response.data);
-        toast.error("failed to book")
-      });
-  }
+  //   await axios
+  //     .post(bookUrl, formData, {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //     .then((res) => {
+  //       setBookedResponse(res.data);
+  //       toast.success("booked succesfully");
+  //     })
+  //     .catch((err) => {
+  //       setBookingErrors(err.response.data);
+  //       toast.error("failed to book");
+  //     });
+  // }
 
+  // function cancelBook(cabin) {
+  //   const cancelUrl = `http://localhost:8000/api/orders/book/cancel/${cabin._id}`;
+  //   let id = cabin._id;
 
-  function cancelBook(cabin) {
-    const cancelUrl = `http://localhost:8000/api/orders/book/cancel/${cabin._id}`;
-    let id = cabin._id;
-
-    axios
-      .delete(cancelUrl)
-      .then((res) => {
-        res.data.status ? setBookedResponse(false) : setBookedResponse(true);
-        toast.error("cancelled succesfully");
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("failed to cancel");
-      });
-  }
+  //   axios
+  //     .delete(cancelUrl)
+  //     .then((res) => {
+  //       res.data.status ? setBookedResponse(false) : setBookedResponse(true);
+  //       toast.error("cancelled succesfully");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       toast.error("failed to cancel");
+  //     });
+  // }
 
   return (
     <div>
       <div className="container w-full">
         {/* {JSON.stringify(book)} */}
         {
-          <div className="flex justify-end mb-10 ">
+          <div className="mb-10 flex justify-end">
             <Link to="/" className="justify-end underline">
               Go back
             </Link>
@@ -84,14 +80,29 @@ const BookedCabins = () => {
         }
 
         {book.length === 0 ? (
-          <div className="p-10 flex items-center justify-center text-[20px] md:text-[28px] w-full">
+          <div className="flex w-full items-center justify-center p-10 text-[20px] md:text-[28px]">
             No Cabin in Booking List yet.
           </div>
         ) : (
           <>
             {book.map((el) => {
               return (
-                <div className="container mb-10" key={el._id}>
+                <div key={el._id}>
+                  <BookedCabin cabin={el} />
+                </div>
+              );
+            })}
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default BookedCabins;
+
+{
+  /* <div className="container mb-10" key={el._id}>
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
@@ -104,7 +115,7 @@ const BookedCabins = () => {
                       onClick={() => {
                         dispatch(unsetReduxBook(el));
                         localStorage.removeItem("likedCabins");
-                        toast.error("cabin removed")
+                        toast.error("cabin removed");
                       }}
                     />
                     <div className="container mb-4 flex flex-col justify-center md:flex-row">
@@ -189,14 +200,5 @@ const BookedCabins = () => {
                       )}
                     </div>
                   </form>
-                </div>
-              );
-            })}
-          </>
-        )}
-      </div>
-    </div>
-  );
-};
-
-export default BookedCabins;
+                </div> */
+}

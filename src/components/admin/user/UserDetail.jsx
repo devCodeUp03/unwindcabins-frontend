@@ -32,8 +32,8 @@ const UserDetail = () => {
           <div className="flex flex-col items-center gap-4">
             <img
               src={`http://localhost:8000${user.image}`}
-              alt=""
-              className="h-[170px] w-[140px]"
+              alt="" 
+              className="h-[170px] w-[140px] border-black border-2 rounded-md"
             />
             <p className="text-[20px] font-thin">User Photo</p>
           </div>

@@ -17,6 +17,10 @@ import Admin from "./pages/Admin";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserDetail from "./components/admin/user/UserDetail";
+import CabinDetail from "./components/admin/cabin/CabinDetail";
+import CabinEdit from "./components/admin/cabin/CabinEdit";
+import AddCabin from "./components/admin/cabin/AddCabin";
+import BookingDetail from "./components/admin/booking/BookingDetail";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -37,7 +41,9 @@ const App = () => {
         dispatch(setReduxUser(user));
       });
   }, []);
-  // const [user, setUser] = useState(null);
+
+  
+  const [user, setUser] = useState(null);
   const router = createBrowserRouter([
     {
       path: "",
@@ -60,14 +66,30 @@ const App = () => {
           children: [
             {
               path: "",
-              element: <Admin />
-
+              element: <Admin />,
             },
             {
               path: "userdetails/:id",
-              element:<UserDetail />
-            }
-          ]
+              element: <UserDetail />,
+            },
+
+            {
+              path: "cabindetails/:id",
+              element: <CabinDetail />,
+            },
+            {
+              path: "cabinedit/:id",
+              element: <CabinEdit />,
+            },
+            {
+              path: "addcabin",
+              element: <AddCabin />,
+            },
+            {
+              path: "bookingdetail/:id",
+              element: <BookingDetail />,
+            },
+          ],
         },
 
         {

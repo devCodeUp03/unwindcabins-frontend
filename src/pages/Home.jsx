@@ -11,20 +11,26 @@ import FindGateway from "../components/home/FindGateway";
 import Footer from "../components/common/Footer";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { Add, Subtract } from "../components/multiple";
 
 const Home = () => {
-  return <>
-    {/* <Header /> */}
-    <HeroSection />
-    <DiscoverCabins />
-    <InspirationCabins />
-    <PurpleWoman />
-    <CabinGateway />
-    <FindCabin />
-    <Faq />
-    <FindGateway />
-    {/* <Footer />      */}
-  </>;
+  return (
+    <>
+      {/* <Add />
+<Subtract /> */}
+
+      {/* <Header /> */}
+      <HeroSection />
+      <DiscoverCabins />
+      <InspirationCabins />
+      <PurpleWoman />
+      <CabinGateway />
+      <FindCabin />
+      <Faq />
+      <FindGateway />
+      {/* <Footer />      */}
+    </>
+  );
 };
 
 export default Home;

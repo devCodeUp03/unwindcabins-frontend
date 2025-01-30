@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -7,11 +8,12 @@ const SignUp = () => {
   const navigate = useNavigate();
   const [userType, setUserType] = useState("");
   const [fileName, setFileName] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   // const [file, setFile] = useState(null);
   const [gender, setGender] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [formErrors, setFormErrors] = useState({});
-  
+
   const url = "http://localhost:8000/api/users/signup";
   async function handleSignup(e) {
     e.preventDefault();
@@ -38,7 +40,7 @@ const SignUp = () => {
       .then((res) => {
         setIsLoading(false);
 
-        navigate("/login")
+        navigate("/login");
         toast.success("success");
         console.log(res);
       })
@@ -61,6 +63,10 @@ const SignUp = () => {
   function handleGenderChange(e) {
     setGender(e.target.value);
   }
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   return (
     <div>
       <div className="flex h-[600px] items-center justify-center bg-[#C5FBD8] md:h-[800px] lg:h-[880px] xxl:h-[900px]">
@@ -97,7 +103,9 @@ const SignUp = () => {
                   className="text-box bg-[#EAEAEA]"
                   name="secretkey"
                 />
-                <span className="text-red-500">{formErrors.secretkey?.msg}</span>
+                <span className="text-red-500">
+                  {formErrors.secretkey?.msg}
+                </span>
               </div>
             )}
 
@@ -121,40 +129,50 @@ const SignUp = () => {
               <span className="text-red-500">{formErrors.email?.msg}</span>
             </div>
 
-            <div>
+            <div className="relative">
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Password"
                 className="text-box bg-[#EAEAEA]"
                 name="password"
               />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+              >
+                {showPassword ? (
+                  <AiOutlineEyeInvisible size={20} />
+                ) : (
+                  <AiOutlineEye size={20} />
+                )}
+              </button>
               <span className="text-red-500">{formErrors.password?.msg}</span>
             </div>
             <div>
-
-            <div className="flex justify-between">
-              <p>Gender: </p>
-              <div className="flex gap-1">
-                <input
-                  type="radio"
-                  name="gender"
-                  id=""
-                  value="male"
-                  onChange={handleGenderChange}
-                />
-                <span>Male</span>
+              <div className="flex justify-between">
+                <p>Gender: </p>
+                <div className="flex gap-1">
+                  <input
+                    type="radio"
+                    name="gender"
+                    id=""
+                    value="male"
+                    onChange={handleGenderChange}
+                  />
+                  <span>Male</span>
+                </div>
+                <div className="flex gap-1">
+                  <input
+                    type="radio"
+                    name="gender"
+                    id=""
+                    value="female"
+                    onChange={handleGenderChange}
+                  />
+                  <span>Female</span>
+                </div>
               </div>
-              <div className="flex gap-1">
-                <input
-                  type="radio"
-                  name="gender"
-                  id=""
-                  value="female"
-                  onChange={handleGenderChange}
-                />
-                <span>Female</span>
-              </div>
-            </div>
               <span className="text-red-500">{formErrors.gender?.msg}</span>
             </div>
 
@@ -208,7 +226,6 @@ const SignUp = () => {
           </p>
         </div>
       </div>
-    
     </div>
   );
 };

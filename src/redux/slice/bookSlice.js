@@ -15,7 +15,6 @@ export const bookSlice = createSlice({
       let found = state.value.find((el) => el?._id === action.payload?._id);
 
       if (!found) {
-        
         state.value.push(action.payload);
         localStorage.setItem("bookedCabins", JSON.stringify(state.value));
       }
@@ -26,7 +25,7 @@ export const bookSlice = createSlice({
     },
     bookReset: (state, action) => {
       state.value = [];
-    }
+    },
   },
 });
 

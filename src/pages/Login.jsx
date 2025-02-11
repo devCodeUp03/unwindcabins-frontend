@@ -12,8 +12,8 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [userInfos, setUserInfos] = useState({
-    email: "devashup68@gmail.com",
-    password: "devashish123",
+    email: "",
+    password: "",
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import rootUrl from "../url";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const [userType, setUserType] = useState("");
+  const [userType, setUserType] = useState("user");
   const [fileName, setFileName] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   // const [file, setFile] = useState(null);
@@ -14,10 +15,11 @@ const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [formErrors, setFormErrors] = useState({});
 
-  const url = "${rootUrl}/api/users/signup";
+  const url = `${rootUrl}/api/users/signup`;
   async function handleSignup(e) {
     e.preventDefault();
     setIsLoading(true);
+
 
     let formData = {
       usertype: e.target.usertype.value,
@@ -30,6 +32,8 @@ const SignUp = () => {
       image: e.target.profile.files[0],
     };
     // console.log("Image:" + formData.file);
+
+    console.log(formData);
 
     await axios
       .post(url, formData, {
@@ -47,7 +51,7 @@ const SignUp = () => {
       .catch((err) => {
         setFormErrors(err.response.data.errors);
 
-        console.log(err.response.data.errors);
+        console.log(err);
         setIsLoading(false);
         toast.error("bad request");
         console.log(formErrors);
@@ -92,7 +96,7 @@ const SignUp = () => {
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
               </select>
-              <span className="text-red-500">{formErrors.usertype?.msg}</span>
+              <span className="text-red-500">{formErrors?.usertype?.msg}</span>
             </div>
 
             {userType === "admin" && (
@@ -104,7 +108,7 @@ const SignUp = () => {
                   name="secretkey"
                 />
                 <span className="text-red-500">
-                  {formErrors.secretkey?.msg}
+                  {formErrors?.secretkey?.msg}
                 </span>
               </div>
             )}
@@ -116,7 +120,7 @@ const SignUp = () => {
                 className="text-box bg-[#EAEAEA]"
                 name="username"
               />
-              <span className="text-red-500">{formErrors.username?.msg}</span>
+              <span className="text-red-500">{formErrors?.username?.msg}</span>
             </div>
 
             <div>
@@ -126,7 +130,7 @@ const SignUp = () => {
                 className="text-box bg-[#EAEAEA]"
                 name="email"
               />
-              <span className="text-red-500">{formErrors.email?.msg}</span>
+              <span className="text-red-500">{formErrors?.email?.msg}</span>
             </div>
 
             <div className="relative">
@@ -147,7 +151,7 @@ const SignUp = () => {
                   <AiOutlineEye size={20} />
                 )}
               </button>
-              <span className="text-red-500">{formErrors.password?.msg}</span>
+              <span className="text-red-500">{formErrors?.password?.msg}</span>
             </div>
             <div>
               <div className="flex justify-between">
@@ -173,7 +177,7 @@ const SignUp = () => {
                   <span>Female</span>
                 </div>
               </div>
-              <span className="text-red-500">{formErrors.gender?.msg}</span>
+              <span className="text-red-500">{formErrors?.gender?.msg}</span>
             </div>
 
             <div>
@@ -185,7 +189,7 @@ const SignUp = () => {
                 min="1"
                 className="text-box w-full appearance-none bg-[#EAEAEA] [-moz-appearance:textfield] [&::-webkit-inner-spin-button]:hidden [&::-webkit-outer-spin-button]:hidden"
               />
-              <span className="text-red-500">{formErrors.age?.msg}</span>
+              <span className="text-red-500">{formErrors?.age?.msg}</span>
             </div>
             <div>
               <p className="mb-1">Image File</p>

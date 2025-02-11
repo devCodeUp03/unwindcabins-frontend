@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import rootUrl from "../../../url";
 
 const InspirationSlug = () => {
   const [inspirationCabin, setInspirationCabin] = useState({});

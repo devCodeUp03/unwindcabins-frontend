@@ -68,7 +68,7 @@ const DiscoverCabin = (props) => {
   return (
     <div
       onClick={() => {
-        navigate(`cabins/${_id}`);
+        navigate(`/cabins/${_id}`);
       }}
     >
       <div className="bg-red flex h-[488px] max-w-[339px] flex-col items-center hover:cursor-pointer">

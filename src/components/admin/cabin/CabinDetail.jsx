@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { HashLink } from "react-router-hash-link";
+import rootUrl from "../../../url";
 
 const CabinDetail = () => {
   let { id } = useParams();

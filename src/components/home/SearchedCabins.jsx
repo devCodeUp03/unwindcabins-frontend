@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import DiscoverCabin from "./discoverCabin/DiscoverCabin";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import rootUrl from "../../url";
 
 const SearchedCabins = () => {
   let searchedCabins = useSelector((store) => store.search.value);
@@ -28,7 +29,7 @@ const SearchedCabins = () => {
               return (
                 <DiscoverCabin
                   _id={el._id}
-                  image={"${rootUrl}" + el.image}
+                  image={`${rootUrl}` + el.image}
                   placeName={el.placeName}
                   cabinName={el.cabinName}
                   price={el.price}

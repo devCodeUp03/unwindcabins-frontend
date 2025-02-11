@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import rootUrl from "../../../url";
 const UserDetail = () => {
   const navigate = useNavigate();
   let { id } = useParams();

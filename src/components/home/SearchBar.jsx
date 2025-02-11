@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setReduxSearch } from "../../redux/slice/searchSlice";
 import { useLocation, useNavigate } from "react-router-dom";
+import rootUrl from "../../url";
 
 const SearchBar = () => {
   let navigate = useNavigate();
@@ -13,7 +14,7 @@ const SearchBar = () => {
     let formData = {
       cabinOrPlace: e.target.cabinOrPlace.value,
     };
-    let url = "${rootUrl}/api/cabins/cabins/search";
+    let url = `${rootUrl}/api/cabins/cabins/search`;
 
     axios
       .post(url, formData)

@@ -43,7 +43,6 @@ const App = () => {
       });
   }, []);
 
-  
   const [user, setUser] = useState(null);
   const router = createBrowserRouter([
     {

@@ -20,8 +20,8 @@ const BookedCabin = (props) => {
       cabinId: cabin._id,
       rate: cabin.price,
       cabinName: cabin.cabinName,
-      checkin: e.target.checkin.value,
-      checkout: e.target.checkout.value,
+      checkin: new Date(e.target.checkin.value),
+      checkout: new Date(e.target.checkout.value),
       bookedBy: user.user._id,
       travellers: e.target.travellers.value,
     };
@@ -34,6 +34,7 @@ const BookedCabin = (props) => {
       })
       .then((res) => {
         setBookedResponse(res.data);
+        setBookingErrors(null);
         toast.success("booked succesfully");
       })
       .catch((err) => {

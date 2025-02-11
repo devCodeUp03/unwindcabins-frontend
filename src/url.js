@@ -1,6 +1,6 @@
 const rootUrl =
   window.location.hostname === "localhost"
-    ? "https://unwindcabins-backend.onrender.com"
+    ? "http://localhost:8000"
     : "https://unwindcabins-backend.onrender.com";
 
 export default rootUrl;

@@ -23,7 +23,7 @@ const BookedCabins = () => {
 
   // async function bookCabin(e, cabin) {
   //   let [bookedResponse, setBookedResponse] = useState(null);
-  //   const bookUrl = `http://localhost:8000/api/orders/book/`;
+  //   const bookUrl = `${rootUrl}/api/orders/book/`;
 
   //   let formData = {
   //     cabinId: cabin._id,
@@ -52,7 +52,7 @@ const BookedCabins = () => {
   // }
 
   // function cancelBook(cabin) {
-  //   const cancelUrl = `http://localhost:8000/api/orders/book/cancel/${cabin._id}`;
+  //   const cancelUrl = `${rootUrl}/api/orders/book/cancel/${cabin._id}`;
   //   let id = cabin._id;
 
   //   axios
@@ -120,7 +120,7 @@ export default BookedCabins;
                     />
                     <div className="container mb-4 flex flex-col justify-center md:flex-row">
                       <img src={el.image} alt={el.cabinName} />
-                      <img src={`http://localhost:8000${el.image}`} alt="" />
+                      <img src={`${rootUrl}${el.image}`} alt="" />
                       <div className="flex flex-col gap-[20px] rounded-sm bg-[#2B3030] px-[18px] py-[12px] text-white md:rounded-none">
                         <p>82 reviews</p>
                         <p>£{el.price}pp</p>

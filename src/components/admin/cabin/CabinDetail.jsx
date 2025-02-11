@@ -7,7 +7,7 @@ const CabinDetail = () => {
   let { id } = useParams();
   const [cabin, setCabin] = useState({});
 
-  const url = `http://localhost:8000/api/cabins/getCabins/one/${id}`;
+  const url = `${rootUrl}/api/cabins/getCabins/one/${id}`;
 
   useEffect(() => {
     axios
@@ -26,7 +26,7 @@ const CabinDetail = () => {
         </HashLink>
       </div>
       <div className="container flex flex-col justify-center md:flex-row">
-        <img src={`http://localhost:8000${cabin.image}`} alt="" />
+        <img src={`${rootUrl}${cabin.image}`} alt="" />
         <div className="flex flex-col gap-[20px] rounded-sm bg-[#2B3030] px-[18px] py-[12px] text-white md:rounded-none">
           <p>82 reviews</p>
           <p>£{cabin.price}pp</p>

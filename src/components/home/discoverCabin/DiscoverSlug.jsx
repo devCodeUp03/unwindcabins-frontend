@@ -10,7 +10,7 @@ const DiscoverSlug = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/cabins/getCabins/one/${params.slug}`)
+      .get(`${rootUrl}/api/cabins/getCabins/one/${params.slug}`)
       .then((res) => {
         setDiscoverCabin(res.data);
       });
@@ -18,13 +18,13 @@ const DiscoverSlug = () => {
 
   return (
     <div className="mb-4 mt-4 flex flex-col items-center justify-center">
-      <div className="flex justify-end container mb-2">
+      <div className="container mb-2 flex justify-end">
         <HashLink to="/#ourcabins" className="underline">
           Go back
         </HashLink>
       </div>
       <div className="container flex flex-col justify-center md:flex-row">
-        <img src={`http://localhost:8000${discoverCabin.image}`} alt="" />
+        <img src={`${rootUrl}${discoverCabin.image}`} alt="" />
         <div className="flex flex-col gap-[20px] rounded-sm bg-[#2B3030] px-[18px] py-[12px] text-white md:rounded-none">
           <p>82 reviews</p>
           <p>£{discoverCabin.price}pp</p>

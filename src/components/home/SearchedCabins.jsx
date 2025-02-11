@@ -28,7 +28,7 @@ const SearchedCabins = () => {
               return (
                 <DiscoverCabin
                   _id={el._id}
-                  image={"http://localhost:8000" + el.image}
+                  image={"${rootUrl}" + el.image}
                   placeName={el.placeName}
                   cabinName={el.cabinName}
                   price={el.price}

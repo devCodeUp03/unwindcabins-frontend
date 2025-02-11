@@ -7,6 +7,7 @@ import { HashLink } from "react-router-hash-link";
 import { setReduxUser } from "../../redux/slice/userSlice";
 import { useState } from "react";
 import { bookReset } from "../../redux/slice/bookSlice";
+import rootUrl from "../../url";
 
 const Header = () => {
   const user = useSelector((store) => store.user.value);
@@ -69,7 +70,7 @@ const Header = () => {
               <li className="group relative flex items-center justify-center rounded-full border border-[#3F3F3F] bg-[#F2FAF9] hover:cursor-pointer lg:h-[38px] lg:w-[38px] xl:h-[42px] xl:w-[42px] xxl:h-[48px] xxl:w-[48px]">
                 {user ? (
                   <img
-                    src={`http://localhost:8000${user.user.image}`}
+                    src={`${rootUrl}${user.user.image}`}
                     alt="Profile"
                     className="h-[24px] w-[24px] rounded-full border border-gray-400 bg-white object-cover"
                   />

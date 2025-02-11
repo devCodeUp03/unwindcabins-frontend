@@ -5,24 +5,22 @@ import { setReduxSearch } from "../../redux/slice/searchSlice";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
-
-let navigate = useNavigate();
+  let navigate = useNavigate();
   const dispatch = useDispatch();
   function handleSearch(e) {
-
     e.preventDefault();
 
     let formData = {
       cabinOrPlace: e.target.cabinOrPlace.value,
     };
-    let url = "http://localhost:8000/api/cabins/cabins/search";
+    let url = "${rootUrl}/api/cabins/cabins/search";
 
     axios
       .post(url, formData)
       .then((res) => {
         console.log(res);
-        dispatch(setReduxSearch(res.data))  
-        navigate("/cabins/searchedcabins")      
+        dispatch(setReduxSearch(res.data));
+        navigate("/cabins/searchedcabins");
       })
       .catch((err) => console.log(err));
   }

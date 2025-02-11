@@ -7,7 +7,7 @@ const BookingDetail = () => {
  let navigate =  useNavigate();
 
   let { id } = useParams();
-  let url = `http://localhost:8000/api/orders/booked/getonecabin/${id}`;
+  let url = `${rootUrl}/api/orders/booked/getonecabin/${id}`;
   useEffect(() => {
     axios.get(url).then((res) => {
       setBook(res.data);

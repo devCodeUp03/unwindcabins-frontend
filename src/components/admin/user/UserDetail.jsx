@@ -7,7 +7,7 @@ const UserDetail = () => {
   let { id } = useParams();
   const [user, setUser] = useState({});
 
-  let url = `http://localhost:8000/api/users/getuserdetail/${id}`;
+  let url = `${rootUrl}/api/users/getuserdetail/${id}`;
 
   useEffect(() => {
     axios
@@ -23,7 +23,12 @@ const UserDetail = () => {
   return (
     <div className="container">
       <div className="flex justify-end">
-        <div className="underline cursor-pointer" onClick={() => {navigate("/admin")}}>
+        <div
+          className="cursor-pointer underline"
+          onClick={() => {
+            navigate("/admin");
+          }}
+        >
           Go back
         </div>
       </div>
@@ -31,9 +36,9 @@ const UserDetail = () => {
         <div className="flex gap-2 rounded-md p-1 shadow-[0_12px_20px_0px_rgba(39,45,77,0.2)] sm:gap-3 sm:p-2 md:gap-5 md:p-4 lg:gap-7 lg:p-5 xl:gap-9 xl:p-6 xxl:gap-10 xxl:p-7">
           <div className="flex flex-col items-center gap-4">
             <img
-              src={`http://localhost:8000${user.image}`}
-              alt="" 
-              className="h-[170px] w-[140px] border-black border-2 rounded-md"
+              src={`${rootUrl}${user.image}`}
+              alt=""
+              className="h-[170px] w-[140px] rounded-md border-2 border-black"
             />
             <p className="text-[20px] font-thin">User Photo</p>
           </div>

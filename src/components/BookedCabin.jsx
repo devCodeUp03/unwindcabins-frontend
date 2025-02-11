@@ -5,6 +5,7 @@ import { MdOutlineDoneAll } from "react-icons/md";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
+import rootUrl from "../url";
 const BookedCabin = (props) => {
   let el = props.cabin;
   const [bookingErrors, setBookingErrors] = useState(null);
@@ -13,7 +14,7 @@ const BookedCabin = (props) => {
 
   let [bookedResponse, setBookedResponse] = useState(null);
   async function bookCabin(e, cabin) {
-    const bookUrl = `http://localhost:8000/api/orders/book/`;
+    const bookUrl = `${rootUrl}/api/orders/book/`;
 
     let formData = {
       cabinId: cabin._id,
@@ -42,7 +43,7 @@ const BookedCabin = (props) => {
   }
 
   function cancelBook(cabin) {
-    const cancelUrl = `http://localhost:8000/api/orders/book/cancel/${cabin._id}`;
+    const cancelUrl = `${rootUrl}/api/orders/book/cancel/${cabin._id}`;
     let id = cabin._id;
 
     axios
@@ -76,7 +77,7 @@ const BookedCabin = (props) => {
           />
           <div className="container mb-4 flex flex-col justify-center md:flex-row">
             <img src={el.image} alt={el.cabinName} />
-            <img src={`http://localhost:8000${el.image}`} alt="" />
+            <img src={`${rootUrl}${el.image}`} alt="" />
             <div className="flex flex-col gap-[20px] rounded-sm bg-[#2B3030] px-[18px] py-[12px] text-white md:rounded-none">
               <p>82 reviews</p>
               <p>£{el.price}pp</p>

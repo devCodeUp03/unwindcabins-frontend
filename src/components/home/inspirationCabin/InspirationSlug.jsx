@@ -9,9 +9,7 @@ const InspirationSlug = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `http://localhost:8000/api/cabins/inspirationcabins/one/${params.slug}`,
-      )
+      .get(`${rootUrl}/api/cabins/inspirationcabins/one/${params.slug}`)
       .then((res) => {
         setInspirationCabin(res.data);
       });
@@ -25,7 +23,7 @@ const InspirationSlug = () => {
         </HashLink>
       </div>
       <div className="container flex flex-col justify-center md:flex-row">
-        <img src={`http://localhost:8000${inspirationCabin.image}`} alt="" />
+        <img src={`${rootUrl}${inspirationCabin.image}`} alt="" />
         <div className="flex flex-col gap-[20px] rounded-sm bg-[#596363] px-[18px] py-[12px] text-white md:rounded-none">
           <p>{inspirationCabin.wish}</p>
           <p>{inspirationCabin.action}</p>

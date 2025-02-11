@@ -14,7 +14,7 @@ const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [formErrors, setFormErrors] = useState({});
 
-  const url = "http://localhost:8000/api/users/signup";
+  const url = "${rootUrl}/api/users/signup";
   async function handleSignup(e) {
     e.preventDefault();
     setIsLoading(true);

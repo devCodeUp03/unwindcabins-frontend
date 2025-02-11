@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const AddCabin = () => {
-  let url = `http://localhost:8000/api/cabins/cabin`;
+  let url = `${rootUrl}/api/cabins/cabin`;
 
   const [isLoading, setIsLoading] = useState(false);
 

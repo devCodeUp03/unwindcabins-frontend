@@ -17,7 +17,7 @@ const CabinEdit = () => {
   let [cabin, setCabin] = useState({});
 
   useEffect(() => {
-    let url = `http://localhost:8000/api/cabins/getCabins/one/${id}`;
+    let url = `${rootUrl}/api/cabins/getCabins/one/${id}`;
 
     axios.get(url).then((res) => {
       let filePath = res.data.image;
@@ -55,7 +55,7 @@ const CabinEdit = () => {
   function handleCabinEdit(e) {
     e.preventDefault();
 
-    let url = `http://localhost:8000/api/cabins/cabins/editone/${id}`;
+    let url = `${rootUrl}/api/cabins/cabins/editone/${id}`;
     axios
       .put(url, {
         image: fileName,

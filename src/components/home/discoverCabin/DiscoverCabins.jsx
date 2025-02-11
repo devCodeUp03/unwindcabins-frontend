@@ -4,6 +4,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import DiscoverCabin from "./DiscoverCabin";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
+import rootUrl from "../../../url";
 
 const DiscoverCabins = () => {
   const [cabins, setCabins] = useState([]);
@@ -14,9 +15,8 @@ const DiscoverCabins = () => {
     setLink(location.pathname === "/");
   }, [location.pathname]);
 
-
   useEffect(() => {
-    axios.get("http://localhost:8000/api/cabins/getcabins").then((res) => {
+    axios.get(`${rootUrl}/api/cabins/getcabins`).then((res) => {
       setCabins(res.data || []);
     });
   }, []);
@@ -28,7 +28,7 @@ const DiscoverCabins = () => {
           <p className="font-serif text-[16px] font-bold">
             Discover our idyllic countryside cabins
           </p>
-          <div className="flex flex-col gap-2 md:flex-row md:justify-between font-poppins text-[12px]">
+          <div className="flex flex-col gap-2 font-poppins text-[12px] md:flex-row md:justify-between">
             <p>
               Fully equipped kitchen and bathroom with plenty of walking and
               cycling routes to explore.
@@ -43,14 +43,18 @@ const DiscoverCabins = () => {
               >
                 View all cabins
               </Link>
-            ) : <Link to="/" className="underline">Go back</Link>}
+            ) : (
+              <Link to="/" className="underline">
+                Go back
+              </Link>
+            )}
           </div>
           <div className="grid place-items-center gap-2 md:grid-cols-2 md:justify-between lg:grid-cols-3">
             {cabins.map((el) => {
               return (
                 <DiscoverCabin
                   _id={el._id}
-                  image={"http://localhost:8000" + el.image}
+                  image={`${rootUrl}` + el.image}
                   placeName={el.placeName}
                   cabinName={el.cabinName}
                   price={el.price}

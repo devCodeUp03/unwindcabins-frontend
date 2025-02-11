@@ -6,6 +6,7 @@ import { setReduxUser } from "../redux/slice/userSlice";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import rootUrl from "../url";
 const Login = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +21,7 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    const url = "http://localhost:8000/api/users/login";
+    const url = `${rootUrl}/api/users/login`;
     let formData = {
       email: e.target.email.value,
       password: e.target.password.value,
@@ -74,7 +75,7 @@ const Login = () => {
                 }}
               />
 
-              <FormErrors msg={formErrors.email?.msg} />
+              <FormErrors msg={formErrors?.email?.msg} />
             </div>
             <div className="relative">
               <input
@@ -98,7 +99,7 @@ const Login = () => {
                   <AiOutlineEye size={20} />
                 )}
               </button>
-              <span className="text-red-500">{formErrors.password?.msg}</span>
+              <span className="text-red-500">{formErrors?.password?.msg}</span>
             </div>
 
             <input

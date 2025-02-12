@@ -2,6 +2,7 @@ import React from "react";
 import { DiBackbone } from "react-icons/di";
 
 const Aboutus = () => {
+  // throw new Error("about us error!");
   return (
     <div className="container my-4 flex flex-col gap-4 lg:flex-row lg:gap-2">
       <div className="flex-1">

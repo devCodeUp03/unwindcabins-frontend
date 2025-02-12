@@ -131,7 +131,7 @@ const BookedCabin = (props) => {
           <div className="mb-4 text-center font-semibold underline md:text-[20px]">
             Reservations
           </div>
-          <div className="container flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div className="container flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
             <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-center md:gap-6 lg:gap-[120px] xl:gap-[200px]">
               <div className="flex items-center justify-between gap-2 md:gap-4 lg:gap-[110px] xl:gap-[200px]">
                 <div>

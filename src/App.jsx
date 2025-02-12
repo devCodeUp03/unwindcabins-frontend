@@ -28,8 +28,9 @@ import BookingDetail from "./components/admin/booking/BookingDetail";
 import rootUrl from "./url";
 import ScrollToTop from "./components/common/ScrollToUp";
 import GiftAStay from "./pages/GiftAStay";
-import { ErrorBoundary } from "react-error-boundary";
+
 import Aboutus from "./pages/Aboutus";
+import NotFound from "./components/common/NotFound";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -54,6 +55,10 @@ const App = () => {
   const [user, setUser] = useState(null);
   const router = createBrowserRouter([
     {
+      path: "*",
+      element: <NotFound />,
+    },
+    {
       path: "",
       element: <RootComponent />,
       children: [
@@ -67,7 +72,7 @@ const App = () => {
         },
         {
           path: "/aboutus",
-          element:<Aboutus />
+          element: <Aboutus />,
         },
         {
           path: "/login",
@@ -149,12 +154,10 @@ const App = () => {
   ]);
   return (
     <div>
-      <ErrorBoundary fallback={<p>something went wrong!</p>}>
-        <RouterProvider router={router}>
-          <ScrollToTop />
-        </RouterProvider>
-        <ToastContainer />
-      </ErrorBoundary>
+      <RouterProvider router={router}>
+        <ScrollToTop />
+      </RouterProvider>
+      <ToastContainer />
     </div>
   );
 };

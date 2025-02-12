@@ -27,6 +27,9 @@ import AddCabin from "./components/admin/cabin/AddCabin";
 import BookingDetail from "./components/admin/booking/BookingDetail";
 import rootUrl from "./url";
 import ScrollToTop from "./components/common/ScrollToUp";
+import GiftAStay from "./pages/GiftAStay";
+import { ErrorBoundary } from "react-error-boundary";
+import Aboutus from "./pages/Aboutus";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -49,7 +52,7 @@ const App = () => {
   }, []);
 
   const [user, setUser] = useState(null);
-  const router = createHashRouter([
+  const router = createBrowserRouter([
     {
       path: "",
       element: <RootComponent />,
@@ -57,6 +60,14 @@ const App = () => {
         {
           path: "/",
           element: <Home />,
+        },
+        {
+          path: "/giftastay",
+          element: <GiftAStay />,
+        },
+        {
+          path: "/aboutus",
+          element:<Aboutus />
         },
         {
           path: "/login",
@@ -138,10 +149,12 @@ const App = () => {
   ]);
   return (
     <div>
-      <RouterProvider router={router}>
-        <ScrollToTop />
-      </RouterProvider>
-      <ToastContainer />
+      <ErrorBoundary fallback={<p>something went wrong!</p>}>
+        <RouterProvider router={router}>
+          <ScrollToTop />
+        </RouterProvider>
+        <ToastContainer />
+      </ErrorBoundary>
     </div>
   );
 };

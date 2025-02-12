@@ -59,8 +59,8 @@ const Header = () => {
                 Get inspired
               </HashLink>
             </li>
-            <li className="cursor-pointer hover:text-blue-500">Gift a stay</li>
-            <li className="cursor-pointer hover:text-blue-500">About us</li>
+            <Link to="/giftastay" className="cursor-pointer hover:text-blue-500">Gift a stay</Link>
+            <Link to="/aboutus" className="cursor-pointer hover:text-blue-500">About us</Link>
 
             {isMenuOpen ? (
               <li className="">

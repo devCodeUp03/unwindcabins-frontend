@@ -20,7 +20,6 @@ const SignUp = () => {
     e.preventDefault();
     setIsLoading(true);
 
-
     let formData = {
       usertype: e.target.usertype.value,
       secretkey: e.target.secretkey?.value,
@@ -72,9 +71,9 @@ const SignUp = () => {
     setShowPassword(!showPassword);
   };
   return (
-    <div>
-      <div className="flex h-[600px] items-center justify-center bg-[#C5FBD8] md:h-[800px] lg:h-[880px] xxl:h-[900px]">
-        <div className="container mx-4 rounded-md bg-white p-4 sm:w-[400px] sm:p-5 md:w-[450px] md:p-6 lg:w-[500px] lg:p-7 xl:p-8">
+    <div >
+      <div className="flex items-center justify-center bg-[#C5FBD8] ">
+        <div className="container mx-4 rounded-md bg-white p-4 my-4 xl:my-6 sm:w-[400px] sm:p-5 md:w-[450px] md:p-6 lg:w-[500px] lg:p-7 xl:p-8">
           <form
             className="flex flex-col gap-4 md:gap-6"
             onSubmit={handleSignup}
@@ -133,7 +132,9 @@ const SignUp = () => {
               <span className="text-red-500">{formErrors?.email?.msg}</span>
             </div>
 
+            <div>
             <div className="relative">
+
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
@@ -143,7 +144,7 @@ const SignUp = () => {
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+                className="absolute top-1/2 -translate-y-1/2 right-3 text-gray-500"
               >
                 {showPassword ? (
                   <AiOutlineEyeInvisible size={20} />
@@ -151,6 +152,7 @@ const SignUp = () => {
                   <AiOutlineEye size={20} />
                 )}
               </button>
+            </div>
               <span className="text-red-500">{formErrors?.password?.msg}</span>
             </div>
             <div>
@@ -212,6 +214,7 @@ const SignUp = () => {
                 >
                   Choose File...
                 </label>
+                <span className="text-red-500">{formErrors?.image?.msg}</span>
               </div>
             </div>
 

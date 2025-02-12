@@ -68,7 +68,7 @@ const Header = () => {
               </li>
             ) : (
               <li className="group relative flex items-center justify-center rounded-full border border-[#3F3F3F] bg-[#F2FAF9] hover:cursor-pointer lg:h-[38px] lg:w-[38px] xl:h-[42px] xl:w-[42px] xxl:h-[48px] xxl:w-[48px]">
-                {user ? (
+                {user?.user.image ? (
                   <img
                     src={`${rootUrl}${user.user.image}`}
                     alt="Profile"

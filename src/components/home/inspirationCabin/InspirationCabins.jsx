@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import InspirationCabin from "./InspirationCabin";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
-import rootUrl from "../../../url"
+import rootUrl from "../../../url";
 
 const InspirationCabins = () => {
   const [inspirationCabin, setInspirationCabin] = useState([]);
@@ -21,9 +21,9 @@ const InspirationCabins = () => {
   }, [location.pathname]);
 
   return (
-    <div id="getinspired">
+    <div id="getinspired"> 
       <div className="mt-[20px] rounded-[4px] bg-[#F2FAF9] py-[18px] sm:py-[22px] md:py-[26px] lg:py-[32px] xl:py-[36px] xxl:py-[44px]">
-        <div className="container flex flex-col gap-4">
+        <div className="flex flex-col gap-4 container">
           <p className="font-serif text-[16px] font-bold">
             Inspiration for your next getaway
           </p>
@@ -46,7 +46,8 @@ const InspirationCabins = () => {
               </Link>
             )}
           </div>
-          <div className="grid place-items-center gap-2 md:grid-cols-2 md:justify-between lg:grid-cols-3">
+          {/* <div className="grid place-items-center gap-2 md:grid-cols-2 md:justify-between lg:grid-cols-3"> */}
+          <div className="flex flex-wrap justify-center gap-3 md:justify-between lg:flex-nowrap">
             {inspirationCabin.map((el) => {
               return (
                 <InspirationCabin

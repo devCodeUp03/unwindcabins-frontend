@@ -77,28 +77,30 @@ const Login = () => {
 
               <FormErrors msg={formErrors?.email?.msg} />
             </div>
-            <div className="relative">
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                className="text-box bg-[#EAEAEA]"
-                name="password"
-                value={userInfos.password}
-                onChange={(e) => {
-                  setUserInfos({ ...userInfos, password: e.target.value });
-                }}
-              />
-              <button
-                type="button"
-                onClick={togglePasswordVisibility}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
-              >
-                {showPassword ? (
-                  <AiOutlineEyeInvisible size={20} />
-                ) : (
-                  <AiOutlineEye size={20} />
-                )}
-              </button>
+            <div>
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  className="text-box bg-[#EAEAEA]"
+                  name="password"
+                  value={userInfos.password}
+                  onChange={(e) => {
+                    setUserInfos({ ...userInfos, password: e.target.value });
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+                >
+                  {showPassword ? (
+                    <AiOutlineEyeInvisible size={20} />
+                  ) : (
+                    <AiOutlineEye size={20} />
+                  )}
+                </button>
+              </div>
               <span className="text-red-500">{formErrors?.password?.msg}</span>
             </div>
 

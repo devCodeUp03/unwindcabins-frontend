@@ -1,6 +1,10 @@
 import react, { useEffect, useState } from "react";
 import Home from "./pages/Home";
-import { createBrowserRouter, createHashRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createHashRouter,
+  RouterProvider,
+} from "react-router-dom";
 import Login from "./pages/Login";
 import RootComponent from "./components/common/RootComponent";
 import DiscoverCabins from "./components/home/discoverCabin/DiscoverCabins";
@@ -22,7 +26,7 @@ import CabinEdit from "./components/admin/cabin/CabinEdit";
 import AddCabin from "./components/admin/cabin/AddCabin";
 import BookingDetail from "./components/admin/booking/BookingDetail";
 import rootUrl from "./url";
-
+import ScrollToTop from "./components/common/ScrollToUp";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -134,7 +138,9 @@ const App = () => {
   ]);
   return (
     <div>
-      <RouterProvider router={router} />
+      <RouterProvider router={router}>
+        <ScrollToTop />
+      </RouterProvider>
       <ToastContainer />
     </div>
   );

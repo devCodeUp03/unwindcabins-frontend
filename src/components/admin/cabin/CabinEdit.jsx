@@ -34,8 +34,13 @@ const CabinEdit = () => {
     });
   }, []);
 
+  // function handleFileChange(e) {
+  //   setFileName(cabin.image);
+  // }
   function handleFileChange(e) {
-    setFileName(cabin.image);
+    if (e.target.files.length > 0) {
+      setFileName(e.target.files[0].name);
+    }
   }
 
   function handlePlaceName(e) {
@@ -74,12 +79,12 @@ const CabinEdit = () => {
     e.preventDefault();
     let url = `${rootUrl}/api/cabins/cabins/editone/${id}`;
     let formData = new FormData();
-  
+
     formData.append("placeName", placeName);
     formData.append("cabinName", cabinName);
     formData.append("price", price);
     formData.append("description", description);
-  
+
     // Check if a new file is selected
     const fileInput = document.getElementById("profile");
     if (fileInput.files.length > 0) {
@@ -87,7 +92,7 @@ const CabinEdit = () => {
     } else {
       formData.append("image", cabin.image); // send current image path
     }
-  
+
     axios
       .put(url, formData, {
         headers: {
@@ -98,7 +103,7 @@ const CabinEdit = () => {
         toast.success("Cabin edited successfully");
       });
   }
-  
+
   return (
     <div className="bg-[#C5FBD8] py-2">
       <div className="container flex h-[720px] flex-col items-center justify-center md:h-[800px] lg:h-[880px] xxl:h-[900px]">

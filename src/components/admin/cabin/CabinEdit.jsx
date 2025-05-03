@@ -53,22 +53,52 @@ const CabinEdit = () => {
     setDescription(e.target.value);
   }
 
+  // function handleCabinEdit(e) {
+  //   e.preventDefault();
+
+  //   let url = `${rootUrl}/api/cabins/cabins/editone/${id}`;
+  //   axios
+  //     .put(url, {
+  //       image: fileName,
+  //       placeName,
+  //       cabinName,
+  //       price,
+  //       description,
+  //     })
+  //     .then((res) => {
+  //       toast.success("cabin edited successfully");
+  //     });
+  // }
+
   function handleCabinEdit(e) {
     e.preventDefault();
-
     let url = `${rootUrl}/api/cabins/cabins/editone/${id}`;
+    let formData = new FormData();
+  
+    formData.append("placeName", placeName);
+    formData.append("cabinName", cabinName);
+    formData.append("price", price);
+    formData.append("description", description);
+  
+    // Check if a new file is selected
+    const fileInput = document.getElementById("profile");
+    if (fileInput.files.length > 0) {
+      formData.append("image", fileInput.files[0]);
+    } else {
+      formData.append("image", cabin.image); // send current image path
+    }
+  
     axios
-      .put(url, {
-        image: fileName,
-        placeName,
-        cabinName,
-        price,
-        description,
+      .put(url, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       })
       .then((res) => {
-        toast.success("cabin edited successfully");
+        toast.success("Cabin edited successfully");
       });
   }
+  
   return (
     <div className="bg-[#C5FBD8] py-2">
       <div className="container flex h-[720px] flex-col items-center justify-center md:h-[800px] lg:h-[880px] xxl:h-[900px]">

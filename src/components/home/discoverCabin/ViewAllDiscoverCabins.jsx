@@ -6,7 +6,7 @@ import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import rootUrl from "../../../url";
 
-const DiscoverCabins = () => {
+const ViewAllDiscoverCabins = () => {
   const [cabins, setCabins] = useState([]);
   const [skeleton, setSekeleton] = useState(false);
   const [link, setLink] = useState(true);
@@ -38,25 +38,15 @@ const DiscoverCabins = () => {
               Fully equipped kitchen and bathroom with plenty of walking and
               cycling routes to explore.
             </p>
-            {link ? (
-              <Link
-                to="cabins/viewalldiscovercabins"
-                className="underline"
-                onClick={() => {
-                  setLink(false);
-                }}
-              >
-                View all cabins
-              </Link>
-            ) : (
+            {link &&
               <Link to="/" className="underline">
                 Go back
               </Link>
-            )}
+            }
           </div>
           {/* <div className="grid place-items-center gap-2 md:grid-cols-2 md:justify-between lg:grid-cols-3"> */}
-          <div className="flex flex-row flex-wrap gap-3 justify-between">
-            {cabins.slice(0,3).map((el) => {
+          <div className="flex flex-row flex-wrap gap-3 justify-between my-10">
+            {cabins.map((el) => {
               return (
                 <DiscoverCabin
                   _id={el._id}
@@ -83,4 +73,4 @@ const DiscoverCabins = () => {
   );
 };
 
-export default DiscoverCabins;
+export default ViewAllDiscoverCabins;

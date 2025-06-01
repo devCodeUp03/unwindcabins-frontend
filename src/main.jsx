@@ -5,7 +5,7 @@ import App from "./App.jsx";
 import store from "./redux/store.js";
 import { Provider } from "react-redux";
 
-import ScrollToTop from "./components/common/ScrollToUp.jsx";
+// import ScrollToTop from "./components/common/ScrollToUp.jsx";
 import ErrorBoundary from "./components/common/ErrorBoundary.jsx";
 
 createRoot(document.getElementById("root")).render(

@@ -4,6 +4,7 @@ import { CiHeart } from "react-icons/ci";
 import { useDispatch } from "react-redux";
 import { setReduxBook, unsetReduxBook } from "../../../redux/slice/bookSlice";
 import { toast } from "react-toastify";
+import { GiConsoleController } from "react-icons/gi";
 
 const DiscoverCabin = (props) => {
   let navigate = useNavigate();
@@ -77,7 +78,7 @@ const DiscoverCabin = (props) => {
     >
       <div className="absolute top-3 right-3 flex w-[339px] justify-end">
         <div
-          className="flex h-[40px] w-[40px] items-center justify-center rounded-md bg-[#131311]"
+          className="flex w-[40px] items-center justify-center rounded-md bg-[#131311]"
           onClick={(e) => {
             e.stopPropagation();
             let token = localStorage.getItem("token");

@@ -73,6 +73,7 @@ const Header = () => {
                     src={`${rootUrl}${user.user.image}`}
                     alt="Profile"
                     className="h-[24px] w-[24px] rounded-full border border-gray-400 bg-white object-cover"
+                    referrerPolicy="no-referrer"
                   />
                 ) : (
                   <FaUserCircle className="text-[24px]" />

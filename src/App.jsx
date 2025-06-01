@@ -26,11 +26,12 @@ import CabinEdit from "./components/admin/cabin/CabinEdit";
 import AddCabin from "./components/admin/cabin/AddCabin";
 import BookingDetail from "./components/admin/booking/BookingDetail";
 import rootUrl from "./url";
-import ScrollToTop from "./components/common/ScrollToUp";
+// import ScrollToTop from "./components/common/ScrollToUp";
 import GiftAStay from "./pages/GiftAStay";
 
 import Aboutus from "./pages/Aboutus";
 import NotFound from "./components/common/NotFound";
+import ViewAllDiscoverCabins from "./components/home/discoverCabin/ViewAllDiscoverCabins";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -119,6 +120,9 @@ const App = () => {
             {
               path: "",
               element: <DiscoverCabins />,
+            },{
+              path: "viewalldiscovercabins",
+              element: <ViewAllDiscoverCabins />
             },
             {
               path: "searchedcabins",
@@ -153,12 +157,12 @@ const App = () => {
     },
   ]);
   return (
-    <div>
+    <>
       <RouterProvider router={router}>
-        <ScrollToTop />
+        {/* <ScrollToTop /> */}
       </RouterProvider>
       <ToastContainer />
-    </div>
+    </>
   );
 };
 

@@ -37,7 +37,7 @@ const SearchBar = () => {
         className="text-box bg-[#EAEAEA]"
         name="cabinOrPlace"
       />
-      <input type="date" className="text-box bg-[#EAEAEA]" placeholder="" />
+      {/* <input type="date" className="text-box bg-[#EAEAEA]" placeholder="" />
       <input type="date" className="text-box bg-[#EAEAEA]" />
       <input
         type="number"
@@ -48,9 +48,9 @@ const SearchBar = () => {
         type="submit"
         value="Find available cabins"
         className="text-box bg-[#EAEAEA]"
-      /> */}
+      {/* /> */}
 
-      <button className="text-box bg-[#233D2C] text-[14px] text-white hover:bg-[#4f6456] xl:text-[15px] xxl:text-[16px]">
+      <button className="text-box bg-[#233D2C] text-[14px] text-white hover:bg-[#4f6456] xl:text-[15px] xxl:text-[16px] lg:w-[240px]">
         Find available cabins
       </button>
     </form>

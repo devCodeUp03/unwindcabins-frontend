@@ -38,14 +38,13 @@ const ViewAllDiscoverCabins = () => {
               Fully equipped kitchen and bathroom with plenty of walking and
               cycling routes to explore.
             </p>
-            {link &&
-              <Link to="/" className="underline">
-                Go back
-              </Link>
-            }
+
+            <Link to="/" className="underline">
+              Go back
+            </Link>
           </div>
           {/* <div className="grid place-items-center gap-2 md:grid-cols-2 md:justify-between lg:grid-cols-3"> */}
-          <div className="flex flex-row flex-wrap gap-3 justify-between my-10">
+          <div className="my-10 flex flex-row flex-wrap justify-between gap-3">
             {cabins.map((el) => {
               return (
                 <DiscoverCabin

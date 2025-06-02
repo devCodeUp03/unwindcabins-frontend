@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import DiscoverCabin from "./DiscoverCabin";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
@@ -8,20 +8,21 @@ import rootUrl from "../../../url";
 
 const DiscoverCabins = () => {
   const [cabins, setCabins] = useState([]);
-  const [skeleton, setSekeleton] = useState(false);
   const [link, setLink] = useState(true);
   const location = useLocation();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setLink(location.pathname === "/");
   }, [location.pathname]);
 
   useEffect(() => {
+    setIsLoading(true);
     axios.get(`${rootUrl}/api/cabins/getcabins`).then((res) => {
-      setSekeleton(true);
       setCabins(res.data || []);
-      setSekeleton(false);
-    });
+      setIsLoading(false);
+    }).catch(res => console.error("Failed to fetch cabins: ", err)).finally(() => {setIsLoading(false)})
+
   }, []);
 
   console.log(cabins);
@@ -55,26 +56,27 @@ const DiscoverCabins = () => {
             )}
           </div>
           {/* <div className="grid place-items-center gap-2 md:grid-cols-2 md:justify-between lg:grid-cols-3"> */}
-          <div className="flex flex-row flex-wrap  justify-center md:justify-between gap-4">
-            {cabins.slice(0,3).map((el) => {
-              return (
-                <DiscoverCabin
-                  _id={el._id}
-                  image={`${rootUrl}` + el.image}
-                  placeName={el.placeName}
-                  cabinName={el.cabinName}
-                  price={el.price}
-                  description={el.description}
-                  key={el._id}
-                />
-              );
-            })}
-            {skeleton && (
+          <div className="flex flex-row flex-wrap justify-center gap-4 md:justify-between">
+            {isLoading ? (
               <>
-                <Skeleton className="h-[488px] max-w-[339px]" />
-                <Skeleton className="h-[488px] max-w-[339px]" />
-                <Skeleton className="h-[488px] max-w-[339px]" />
+                <Skeleton height={448}  width={340}/>
+                <Skeleton height={448}  width={340}/>
+                <Skeleton height={448}  width={340}/>
               </>
+            ) : (
+              cabins
+                .slice(0, 3)
+                .map((el) => (
+                  <DiscoverCabin
+                    _id={el._id}
+                    image={`${rootUrl}${el.image}`}
+                    placeName={el.placeName}
+                    cabinName={el.cabinName}
+                    price={el.price}
+                    description={el.description}
+                    key={el._id}
+                  /> 
+                ))
             )}
           </div>
         </div>

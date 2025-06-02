@@ -32,6 +32,7 @@ import GiftAStay from "./pages/GiftAStay";
 import Aboutus from "./pages/Aboutus";
 import NotFound from "./components/common/NotFound";
 import ViewAllDiscoverCabins from "./components/home/discoverCabin/ViewAllDiscoverCabins";
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const App = () => {
   const dispatch = useDispatch();

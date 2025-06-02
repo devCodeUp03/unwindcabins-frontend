@@ -192,7 +192,7 @@ const Header = () => {
               </li>
             </ul>
 
-            <div className="relative flex h-12 w-12 items-center justify-center gap-[0.5] bg-red-100 lg:hidden">
+            <div className="relative flex h-12 w-12 items-center justify-center gap-[0.5] lg:hidden">
               <GiHamburgerMenu
                 onClick={toggleMenu}
                 className="text-[22px] sm:text-[24px] md:text-[28px] lg:text-[32px]"

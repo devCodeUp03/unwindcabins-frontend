@@ -1,4 +1,6 @@
 import react, { useEffect, useState } from "react";
+import { ScrollRestoration } from "react-router";
+
 import Home from "./pages/Home";
 import {
   createBrowserRouter,
@@ -160,6 +162,7 @@ const App = () => {
   return (
     <>
       <RouterProvider router={router}>
+       
         {/* <ScrollToTop /> */}
       </RouterProvider>
       <ToastContainer />

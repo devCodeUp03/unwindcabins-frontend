@@ -52,7 +52,7 @@ const BookedCabin = (props) => {
       .delete(cancelUrl)
       .then((res) => {
         res.data.status ? setBookedResponse(false) : setBookedResponse(true);
-        toast.error("cancelled succesfully");
+        toast.success("cancelled succesfully");
         togglePopup();
       })
       .catch((err) => {
@@ -114,7 +114,7 @@ const BookedCabin = (props) => {
             onClick={() => {
               dispatch(unsetReduxBook(el));
               localStorage.removeItem("likedCabins");
-              toast.error("cabin removed");
+              toast.success("cabin removed");
             }}
           />
           <div className="container mb-4 flex flex-col justify-center md:flex-row">

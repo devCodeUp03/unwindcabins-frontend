@@ -64,49 +64,88 @@ const DiscoverCabin = (props) => {
     } else {
       setHeart("text-white");
       dispatch(unsetReduxBook(props));
-      toast.error("Cabin removed");
+      toast.success("Cabin removed");
       const updatedCabins = likedCabins.filter((id) => id !== _id);
       localStorage.setItem("likedCabins", JSON.stringify(updatedCabins));
     }
   };
+
+  const addToCartByHeart = (e) => {
+    e.stopPropagation();
+    let token = localStorage.getItem("token");
+    if (token) {
+      toggleHeart();
+    } else {
+      navigate("/login");
+    }
+  };
+
+  const addToCart = (e) => {
+    const likedCabins = JSON.parse(localStorage.getItem("likedCabins")) || [];
+
+    e.stopPropagation();
+    let token = localStorage.getItem("token");
+    if (token) {
+      if (heart === "text-white") {
+        setHeart("text-red-500");
+        dispatch(setReduxBook(props));
+        toast.success("Cabin added");
+        localStorage.setItem(
+          "likedCabins",
+          JSON.stringify([...likedCabins, _id]),
+        );
+      }
+    } else {
+      const updatedCabins = likedCabins.filter((id) => id !== _id);
+      localStorage.setItem("likedCabins", JSON.stringify(updatedCabins));
+      navigate("/login");
+    }
+  };
+
   return (
-    <div
-      onClick={() => {
-        navigate(`/cabins/${_id}`);
-      }}
-      className="bg-red flex w-full flex-col items-center hover:cursor-pointer sm:w-[340px] relative"
-    >
-      <div className="absolute top-3 right-3 flex w-[339px] justify-end">
-        <div
-          className="flex w-[40px] items-center justify-center rounded-md bg-[#131311]"
-          onClick={(e) => {
-            e.stopPropagation();
-            let token = localStorage.getItem("token");
-            if (token) {
-              toggleHeart();
-            } else {
-              navigate("/login");
-            }
-          }}
-        >
-          <CiHeart className={`text-[36px] ${heart}`} />
-        </div>
-      </div>
-      <img className="w-full" src={image} alt="" />
-      <div className="flex flex-col gap-[20px] rounded-sm bg-[#2B3030] px-[18px] py-[12px] text-white">
-        <div className="flex flex-col gap-1">
-          <p>{placeName}</p>
-          <div className="flex justify-between">
-            <p>{cabinName}</p>
-            <p>£{price}pp</p>
+    <div>
+      <div
+        onClick={() => {
+          navigate(`/cabins/${_id}`);
+        }}
+        className="bg-red relative flex w-full flex-col items-center rounded-xl hover:cursor-pointer sm:w-[340px]"
+      >
+        <div className="absolute right-3 top-3 flex w-[339px] justify-end">
+          <div
+            className="flex w-[40px] items-center justify-center rounded-md bg-[#131311]"
+            onClick={(e) => {
+              addToCartByHeart(e);
+            }}
+          >
+            <CiHeart className={`text-[36px] ${heart}`} />
           </div>
         </div>
+        <img
+          className="h-[320px] w-full object-cover object-center"
+          src={image}
+          alt=""
+        />
+        <div className="flex flex-col gap-[20px] rounded-sm bg-[#2B3030] px-[18px] py-[12px] text-white">
+          <div className="flex flex-col gap-1">
+            <p>{placeName}</p>
+            <div className="flex justify-between">
+              <p>{cabinName}</p>
+              <p>£{price}pp</p>
+            </div>
+          </div>
 
-        <div className="flex flex-col gap-3">
-          <p>{description}</p>
-          <p>82 reviews</p>
+          <div className="flex flex-col gap-3">
+            <p>{description}</p>
+            <p>82 reviews</p>
+          </div>
         </div>
       </div>
+      <button
+        className="h-10 w-full bg-[#23b20a] font-bold text-white hover:bg-[#2bc90f]"
+        onClick={(e) => addToCart(e)}
+      >
+        Add to Book
+      </button>
     </div>
   );
 };

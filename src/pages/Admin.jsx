@@ -121,7 +121,7 @@ const Admin = () => {
     axios
       .delete(url)
       .then((res) => {
-        toast.error("cabin removed");
+        toast.success("cabin removed");
         handleCabins();
       })
       .catch((err) => {

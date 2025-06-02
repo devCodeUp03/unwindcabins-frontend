@@ -55,7 +55,7 @@ const DiscoverCabins = () => {
             )}
           </div>
           {/* <div className="grid place-items-center gap-2 md:grid-cols-2 md:justify-between lg:grid-cols-3"> */}
-          <div className="flex flex-row flex-wrap gap-3 justify-between">
+          <div className="flex flex-row flex-wrap  justify-center md:justify-between gap-4">
             {cabins.slice(0,3).map((el) => {
               return (
                 <DiscoverCabin
